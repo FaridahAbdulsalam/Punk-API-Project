@@ -1,0 +1,13 @@
+.card{
+    border: solid 2px lightseagreen;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .card__image{
+        width: 50%;
+        height: auto;
+    }
+
+}
