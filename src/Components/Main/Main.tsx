@@ -1,18 +1,21 @@
-import React from 'react'
+import React from "react";
 import "./Main.scss";
-import beers from '../../Data/beers';
-import Card from '../Card/Card';
+import { Beer } from "../../types/types";
+import CardList from "../CardList/CardList";
 
+type MainProps = {
+  beers: Beer[];
+};
 
-const Main = () => {
+const Main = ({ beers }: MainProps) => {
   return (
-    <div className='main'>
+    <div className="main">
       <h1>Main Page</h1>
       <section>
-        <Card image={beers[0].image_url} name={beers[0].name} tagline={beers[0].tagline}/>
+        <CardList beers={beers} />
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;
