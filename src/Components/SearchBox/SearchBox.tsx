@@ -1,4 +1,4 @@
-import React, { FormEventHandler } from "react";
+import { FormEventHandler } from "react";
 
 type SearchBoxProps = {
   label: string;
@@ -6,20 +6,21 @@ type SearchBoxProps = {
   handleInput: FormEventHandler<HTMLInputElement>;
 };
 
-const SeachBox = ({ label, searchTerm, handleInput }: SearchBoxProps) => {
+const SearchBox = ({ label, searchTerm, handleInput }: SearchBoxProps) => {
   const capitalizedLabel = label[0].toUpperCase() + label.slice(1);
 
   return (
-  <div>
-    <label htmlFor={label}>{capitalizedLabel}</label>
-    <input
-    type="text"
-    id={label}
-    name={label}
-    value={searchTerm}
-    onInput={handleInput}/>
-  </div>
+    <div>
+      <label htmlFor={label}>{capitalizedLabel}</label>
+      <input
+        type="text"
+        id={label}
+        name={label}
+        value={searchTerm}
+        onInput={handleInput}
+      />
+    </div>
   );
 };
 
-export default SeachBox;
+export default SearchBox;
