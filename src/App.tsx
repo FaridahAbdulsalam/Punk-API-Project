@@ -15,16 +15,30 @@ const App = () => {
   };
 
   const handleFilter = (event: ChangeEvent<HTMLSelectElement>) => {
-    const filterInput = event.currentTarget.value
+    const filterInput = event.currentTarget.value;
     // console.log(filterInput);
     setSelectedFilter(filterInput);
-    selectedFilter;    
+    selectedFilter;
   };
 
-  const filteredBeers = beers.filter((beer) => {
-    if (selectedFilter === "All") return true;
-    return selectedFilter === "abv" && beer.abv <= 6;}).filter(beer => beer.name.toLowerCase().includes(searchTerm));
+  const filteredBeers = beers
+    .filter((beer) => {
+      if (selectedFilter === "All") return true;
 
+      if (selectedFilter === "abv") {
+        return beer.abv <= 6;
+      }
+
+      if (selectedFilter === "ph") {
+        return beer.ph >= 4;
+      }
+      return false;
+    })
+    .filter((beer) => beer.name.toLowerCase().includes(searchTerm));
+
+  // const filteredBeers = beers.filter((beer) => {
+  //   if (selectedFilter === "All") return true;
+  //   return selectedFilter === "abv" && beer.abv <= 6;}).filter(beer => beer.name.toLowerCase().includes(searchTerm));
 
   return (
     <div className="display">
