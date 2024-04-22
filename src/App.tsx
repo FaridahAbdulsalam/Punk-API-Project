@@ -23,6 +23,9 @@ const App = () => {
 
   const filteredBeers = beers
     .filter((beer) => {
+      const date = beer.first_brewed.split("/")
+      const year = Number(date[1]);
+      
       if (selectedFilter === "All") return true;
 
       if (selectedFilter === "abv") {
@@ -32,6 +35,11 @@ const App = () => {
       if (selectedFilter === "ph") {
         return beer.ph >= 4;
       }
+
+      if (selectedFilter === "first_brewed") {
+        return year >= 2010
+      }
+
       return false;
     })
     .filter((beer) => beer.name.toLowerCase().includes(searchTerm));
