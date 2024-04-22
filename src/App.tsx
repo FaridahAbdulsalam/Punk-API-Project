@@ -14,11 +14,10 @@ const App = () => {
     console.log(input);
   };
 
-  const handleFilter = (event: ChangeEvent<HTMLSelectElement>) => {
+  const handleFilter = (event: ChangeEvent<HTMLInputElement>) => {
     const filterInput = event.currentTarget.value;
-    // console.log(filterInput);
+    console.log(filterInput);
     setSelectedFilter(filterInput);
-    selectedFilter;
   };
 
   const filteredBeers = beers
@@ -26,7 +25,7 @@ const App = () => {
       const date = beer.first_brewed.split("/")
       const year = Number(date[1]);
       
-      if (selectedFilter === "All") return true;
+      if (selectedFilter === "All" || !selectedFilter) return true;
 
       if (selectedFilter === "abv") {
         return beer.abv <= 6;
@@ -44,9 +43,6 @@ const App = () => {
     })
     .filter((beer) => beer.name.toLowerCase().includes(searchTerm));
 
-  // const filteredBeers = beers.filter((beer) => {
-  //   if (selectedFilter === "All") return true;
-  //   return selectedFilter === "abv" && beer.abv <= 6;}).filter(beer => beer.name.toLowerCase().includes(searchTerm));
 
   return (
     <div className="display">
@@ -55,6 +51,7 @@ const App = () => {
         label="search"
         handleInput={handleInput}
         handleFilter={handleFilter}
+        checked={selectedFilter}
       />
       <CardList beers={filteredBeers} />
     </div>
@@ -62,3 +59,5 @@ const App = () => {
 };
 
 export default App;
+
+

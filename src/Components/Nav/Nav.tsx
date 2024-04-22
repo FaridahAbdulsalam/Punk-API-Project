@@ -8,16 +8,17 @@ type SearchBoxProps = {
   label: string;
   searchTerm: string;
   handleInput: FormEventHandler<HTMLInputElement>;
-  handleFilter: ChangeEventHandler<HTMLSelectElement>;
+  handleFilter: ChangeEventHandler<HTMLInputElement>;
+  checked: string;
 };
 
-const Nav = ({searchTerm, label, handleInput, handleFilter} : SearchBoxProps) => {
+const Nav = ({searchTerm, label, handleInput, handleFilter, checked} : SearchBoxProps) => {
 
   return (
     <nav className='nav'>
       <h2>Nav Bar</h2>
       <SearchBox label={label} searchTerm={searchTerm} handleInput={handleInput}/>
-     <FilterList handleFilter={handleFilter}/>
+     <FilterList handleFilter={handleFilter} checked={checked}/>
     </nav>
   )
 }

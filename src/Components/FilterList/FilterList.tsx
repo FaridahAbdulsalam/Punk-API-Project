@@ -1,22 +1,36 @@
-import React, { ChangeEventHandler } from "react";
+import { ChangeEventHandler } from "react";
+
+const filters = 
+[
+    {id: 1, value: "all", label: "All"},
+    {id: 2, value: "abv", label: "High ABV > 6.0%"},
+    {id: 3, value: "first_brewed", label: "Classic Range"},
+    {id: 4, value: "ph", label: "Acidic (ph < 4)"},
+];
 
 type FilterListProps = {
-    handleFilter: ChangeEventHandler<HTMLSelectElement>
+    handleFilter: ChangeEventHandler<HTMLInputElement>;
+    checked: string;
 }
 
-const FilterList = ({handleFilter}: FilterListProps) => {
+const FilterList = ({handleFilter, checked}: FilterListProps) => {
   return (
     <div className="filter">
-        <label>Filter by:
-            <select name="filter" onChange={handleFilter}>
-                <option value="All">All</option>
-                <option value="abv">ABV</option>
-                <option value="first_brewed">Classic Range</option>
-                <option value="ph">PH</option>
-            </select>
+       {filters.map((filter => (
+        <label key={filter.id}>
+            <input
+            type="checkbox"
+            value={filter.value}
+            checked={checked === filter.value}
+            onChange={handleFilter}
+            />
+            {filter.label}
         </label>
+       )))}
     </div>
   );
 };
 
 export default FilterList;
+
+
