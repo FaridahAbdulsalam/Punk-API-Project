@@ -15,12 +15,15 @@ const App = () => {
   };
 
   const handleFilter = (event: ChangeEvent<HTMLSelectElement>) => {
-    console.log(event.currentTarget.value);
+    const filterInput = event.currentTarget.value
+    // console.log(filterInput);
+    setSelectedFilter(filterInput);
+    selectedFilter;    
   };
 
   const filteredBeers = beers.filter((beer) => {
-    return beer.name.toLowerCase().includes(searchTerm);
-  });
+    if (selectedFilter === "All") return true;
+    return selectedFilter === "abv" && beer.abv <= 6;}).filter(beer => beer.name.toLowerCase().includes(searchTerm));
 
 
   return (
