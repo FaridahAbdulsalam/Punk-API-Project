@@ -6,7 +6,7 @@ import CardList from "./Components/CardList/CardList";
 
 const App = () => {
   const [searchTerm, setSearchTeam] = useState<string>("");
-  const [selectedFilter, setSelectedFilter] = useState("All");
+  const [selectedFilter, setSelectedFilter] = useState("");
 
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const input = event.currentTarget.value.toLowerCase();
@@ -16,8 +16,11 @@ const App = () => {
 
   const handleFilter = (event: ChangeEvent<HTMLInputElement>) => {
     const filterInput = event.currentTarget.value;
-    console.log(filterInput);
-    setSelectedFilter(filterInput);
+    if(filterInput === selectedFilter){
+      return setSelectedFilter("");
+    }else{
+      return setSelectedFilter(filterInput);
+    }   
   };
 
   const filteredBeers = beers
@@ -25,7 +28,7 @@ const App = () => {
       const date = beer.first_brewed.split("/")
       const year = Number(date[1]);
       
-      if (selectedFilter === "All" || !selectedFilter) return true;
+      if (!selectedFilter) return true;
 
       if (selectedFilter === "abv") {
         return beer.abv <= 6;

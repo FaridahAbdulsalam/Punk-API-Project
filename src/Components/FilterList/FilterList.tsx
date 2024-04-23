@@ -2,10 +2,9 @@ import { ChangeEventHandler } from "react";
 
 const filters = 
 [
-    {id: 1, value: "all", label: "All"},
-    {id: 2, value: "abv", label: "High ABV > 6.0%"},
-    {id: 3, value: "first_brewed", label: "Classic Range"},
-    {id: 4, value: "ph", label: "Acidic (ph < 4)"},
+    {id: 1, value: "abv", label: "High ABV > 6.0%"},
+    {id: 2, value: "first_brewed", label: "Classic Range"},
+    {id: 3, value: "ph", label: "Acidic (ph < 4)"},
 ];
 
 type FilterListProps = {
