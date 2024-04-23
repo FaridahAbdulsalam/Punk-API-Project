@@ -1,8 +1,7 @@
-import { ChangeEventHandler, FormEventHandler } from 'react'
-import "./Nav.scss"
+import { ChangeEventHandler, FormEventHandler } from "react";
+import "./Nav.scss";
 import SearchBox from "../SearchBox/SearchBox";
-import FilterList from '../FilterList/FilterList';
-
+import FilterList from "../FilterList/FilterList";
 
 type SearchBoxProps = {
   label: string;
@@ -12,15 +11,23 @@ type SearchBoxProps = {
   checked: string;
 };
 
-const Nav = ({searchTerm, label, handleInput, handleFilter, checked} : SearchBoxProps) => {
-
+const Nav = ({
+  searchTerm,
+  label,
+  handleInput,
+  handleFilter,
+  checked,
+}: SearchBoxProps) => {
   return (
-    <nav className='nav'>
-      <h2>Nav Bar</h2>
-      <SearchBox label={label} searchTerm={searchTerm} handleInput={handleInput}/>
-     <FilterList handleFilter={handleFilter} checked={checked}/>
+    <nav className="nav">
+      <SearchBox
+        label={label}
+        searchTerm={searchTerm}
+        handleInput={handleInput}
+      />
+      <FilterList handleFilter={handleFilter} checked={checked} />
     </nav>
-  )
-}
+  );
+};
 
-export default Nav
+export default Nav;

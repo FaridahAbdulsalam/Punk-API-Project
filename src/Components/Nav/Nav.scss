@@ -1,7 +1,10 @@
 .nav{
     border: solid 1px purple;
+    padding: 10px;
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
     flex-direction: column;
-    width: 20vw;
+    width: 15vw;
     height: auto;
 }
