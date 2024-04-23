@@ -3,10 +3,21 @@ import Nav from "./Components/Nav/Nav";
 import "./App.scss";
 import beers from "./Data/beers";
 import CardList from "./Components/CardList/CardList";
+import { Beer } from "./types/types";
 
 const App = () => {
   const [searchTerm, setSearchTeam] = useState<string>("");
   const [selectedFilter, setSelectedFilter] = useState("");
+
+
+  const getData = async () => {
+    const url = "http://localhost:3333/v2/beers/";
+    const response = await fetch(url);
+    const data: Beer = await response.json();
+    console.log(data);
+  }
+
+  getData();
 
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const input = event.currentTarget.value.toLowerCase();
