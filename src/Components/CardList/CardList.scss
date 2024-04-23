@@ -1,0 +1,8 @@
+.card-list__container{
+    // border: 2px solid red;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 20px;
+    justify-items: center;
+    width: 80vw;
+}

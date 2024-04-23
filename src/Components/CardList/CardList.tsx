@@ -1,5 +1,6 @@
 import Card from "../Card/Card";
 import { Beer } from "../../types/types";
+import "./CardList.scss"
 
 
 type CardProps = {
@@ -10,7 +11,7 @@ const CardList = ({ beers }: CardProps) => {
 
 
   return (
-    <div>
+    <div className="card-list__container">
       {beers.map((beer) => (
         <Card
           key={beer.id}
