@@ -1,22 +1,26 @@
 import { ChangeEventHandler, FormEventHandler } from "react";
 import "./Nav.scss";
 import SearchBox from "../SearchBox/SearchBox";
-import FilterList from "../FilterList/FilterList";
+import FilterItem from "../FilterItem/FilterItem";
 
 type SearchBoxProps = {
   label: string;
   searchTerm: string;
   handleInput: FormEventHandler<HTMLInputElement>;
-  handleFilter: ChangeEventHandler<HTMLInputElement>;
-  checked: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  isCheckedABV: boolean;
+  isCheckedFirstBrewed: boolean;
+  isCheckedPH: boolean;
 };
 
 const Nav = ({
   searchTerm,
   label,
   handleInput,
-  handleFilter,
-  checked,
+  onChange,
+  isCheckedABV,
+  isCheckedFirstBrewed,
+  isCheckedPH
 }: SearchBoxProps) => {
   return (
     <nav className="nav">
@@ -25,7 +29,9 @@ const Nav = ({
         searchTerm={searchTerm}
         handleInput={handleInput}
       />
-      <FilterList handleFilter={handleFilter} checked={checked} />
+      <FilterItem onChange={onChange} isChecked={isCheckedABV} val={"abv"} label={"High Alcohol > 6.0%"} />
+      <FilterItem onChange={onChange} isChecked={isCheckedFirstBrewed} val={"first_brewed"} label={"Classic Range"} />
+      <FilterItem onChange={onChange} isChecked={isCheckedPH} val={"ph"} label={"Acidic (ph < 4)"} />
     </nav>
   );
 };
