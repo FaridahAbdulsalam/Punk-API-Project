@@ -11,13 +11,14 @@
     overflow-x: hidden;
     padding: 1rem;
     background-color: rgb(255, 196, 0);
+    height: 50vh;
 
 
     
 
     .card__image{
-        display: none;
-        max-width: 140px;
+        display: block;
+        max-width: 65px;
         width: 100%;
         height: auto;
         // border: solid 3px green;
@@ -63,19 +64,11 @@ border: 3px solid rgba(163, 126, 4, 0.24);
 
 
 //media query for images only 
-@media screen and (orientation: portrait) and (min-width: 450px){
+@media screen and (max-width: 450px){
     .card{
-    
+        height: 20vh;    
         .card__image{
-            display: block;
-        }
-    }
-}
-
-@media screen and (orientation: landscape) and (min-width: 1300px){
-    .card{
-        .card__image{
-            display: block;
+            display: none;
         }
     }
 }

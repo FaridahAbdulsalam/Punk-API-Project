@@ -7,21 +7,21 @@ import { Beer } from "./types/types";
 
 const App = () => {
   const [beerData, setBeerData] = useState<Beer[]>([]);
-  const [searchTerm, setSearchTeam] = useState<string>("");
+  const [searchTerm, setSearchTeam] = useState<string>(""); 
   const [isCheckedABV, setIsCheckedABV] = useState<boolean>(false);
   const [isCheckedFirstBrewed, setIsCheckedFirstBrewed] =
     useState<boolean>(false);
   const [isCheckedPH, setIsCheckedPH] = useState<boolean>(false);
 
-  // const [selectedFilter, setSelectedFilter] = useState("");
 
-  // const getData = async () => {
-  //   const url = "http://localhost:3333/v2/beers?page=1&per_page=80";
-  //   const response = await fetch(url);
-  //   const data: Beer = await response.json();
-  //   // console.log(data);
-  // }
-  // getData();
+  const getData = async () => {
+    const url = "http://localhost:3333/v2/beers/";
+    const response = await fetch(url);
+    const data: Beer = await response.json();
+    console.log(data);
+    // setBeerData(data)
+  }
+  getData();
 
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const input = event.currentTarget.value.toLowerCase();
@@ -29,6 +29,7 @@ const App = () => {
     console.log(input);
   };
 
+  //checks selected filter value and then updates state according to what filter has been selected
   const handleFilter = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedFilter = event.currentTarget.value;
     const filterInput = event.currentTarget.checked;
@@ -46,10 +47,10 @@ const App = () => {
     .filter((beer) => {
       const date = beer.first_brewed.split("/");
       const year = Number(date[1]);
-      const all = beer.abv >= 6 && beer.ph <=4 && year >=2010;
+      const allFiltersApplied = beer.abv >= 6 && beer.ph <=4 && year >=2010;
 
       if(isCheckedABV && isCheckedPH && isCheckedFirstBrewed){
-        return all;
+        return allFiltersApplied;
       }
       
       if(isCheckedABV && isCheckedPH){
@@ -81,7 +82,11 @@ const App = () => {
     })
     .filter((beer) => beer.name.toLowerCase().includes(searchTerm));
 
-  return (
+    if(filteredBeers.length === 0){
+      return alert("Sorry no beers match your search")
+    }
+    
+    return (
     <div className="display">
       <Nav
         searchTerm={searchTerm}

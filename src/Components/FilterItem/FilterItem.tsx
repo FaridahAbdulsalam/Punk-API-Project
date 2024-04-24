@@ -10,9 +10,10 @@ type FilterItemProps = {
 }
 const FilterItem = ({val, isChecked, onChange, label}: FilterItemProps) => {
   return (
-    <div>
-      <label htmlFor={label}>
+    <div className='filter'>
+      <label className='filter__label' htmlFor={label}>
         <input 
+        className='filter__checkbox'
         type='checkbox'
         id={val}
         value={val}
