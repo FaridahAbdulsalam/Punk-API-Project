@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Nav from "./Components/Nav/Nav";
 import "./App.scss";
 import beers from "./Data/beers";
@@ -15,13 +15,18 @@ const App = () => {
 
 
   const getData = async () => {
-    const url = "http://localhost:3333/v2/beers/";
+    const url = "http://localhost:3333/v2/beers?page=1&per_page=80";
     const response = await fetch(url);
-    const data: Beer = await response.json();
+    const data: Beer[] = await response.json();
     console.log(data);
-    // setBeerData(data)
+    setBeerData(data)
   }
-  getData();
+
+  useEffect( () => {
+    getData()
+  }, [])
+
+
 
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const input = event.currentTarget.value.toLowerCase();
@@ -43,7 +48,7 @@ const App = () => {
     }
   };
 
-  const filteredBeers = beers
+  const filteredBeers = beerData
     .filter((beer) => {
       const date = beer.first_brewed.split("/");
       const year = Number(date[1]);
