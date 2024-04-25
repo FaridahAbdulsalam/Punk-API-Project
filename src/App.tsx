@@ -1,16 +1,15 @@
-import { ChangeEvent, ChangeEventHandler, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Nav from "./Components/Nav/Nav";
 import "./App.scss";
 import CardList from "./Components/CardList/CardList";
 import { Beer } from "./types/types";
 // import beers from "./Data/beers";
-import ResultsCounter from "./Components/ResultsCounter/ResultsCounter";
 import Pagnation from "./Components/Pagnation/Pagnation";
 
 const App = () => {
   const [beerData, setBeerData] = useState<Beer[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [beersPerPage, setBeersPerPage] = useState<number>(25); 
+  const beersPerPage = 25; 
    
 
   //Filters
@@ -35,11 +34,7 @@ const App = () => {
     setCurrentPage(page)
   }
 
-  const handleResults = (event: ChangeEvent<HTMLInputElement>) => {
-    const resultNum = event.currentTarget.value;
-    setBeersPerPage(Number(resultNum));
-  };
-
+ 
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const input = event.currentTarget.value.toLowerCase();
     setSearchTeam(input);
@@ -104,16 +99,7 @@ const App = () => {
   return (
     <div className="display">
       <div>
-      <ResultsCounter
-        min={10}
-        max={50}
-        label={`No. of Beers ${beersPerPage}`}
-        id="beers-results"
-        onChange={handleResults}
-        value={beersPerPage}
-      />
-
-      <Nav
+       <Nav
         searchTerm={searchTerm}
         label="search"
         handleInput={handleInput}
