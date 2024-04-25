@@ -30,14 +30,9 @@ const App = () => {
     getData(beersPerPage, currentPage);
   }, [beersPerPage, currentPage]);
 
-  const totalPages = Math.ceil(beerData.length / beersPerPage)
-  console.log(totalPages);
-
-  
   
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
-    getData(beersPerPage, page)
   }
 
   const handleResults = (event: ChangeEvent<HTMLInputElement>) => {
@@ -130,7 +125,7 @@ const App = () => {
       </div>
     <div>
       <CardList beers={filteredBeers} />
-      <Pagnation cardsPerPage={beersPerPage} length={beerData.length} onChange={handlePageChange}/>
+      <Pagnation currentPage={currentPage} cardsPerPage={beersPerPage} length={beerData.length} onPageChange={handlePageChange}/>
     </div>
     </div>
   );

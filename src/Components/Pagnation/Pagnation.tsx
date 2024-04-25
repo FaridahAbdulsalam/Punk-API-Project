@@ -3,32 +3,25 @@ import { ChangeEventHandler, useState } from 'react'
 type PagnationProps = {
     cardsPerPage: number;
     length: number;
-    onChange: (page: number) => void;
+    currentPage: number;
+    onPageChange: (page: number) => void;
 }
 
-const Pagnation = ({cardsPerPage, length, onChange}: PagnationProps) => {
-  const [currentPage, setCurrentPage] = useState<number>(1);
+const Pagnation = ({cardsPerPage, length, currentPage, onPageChange}: PagnationProps) => {
 
-
-const pageNumbers = []
-
-for (let i = 1; i <= Math.ceil(length / cardsPerPage); i++){
-    pageNumbers.push(i)
-}
+const totalPages = Math.ceil(length/cardsPerPage)
 
 const prevPage = () => {
-    if(currentPage !== 1){
-        setCurrentPage(currentPage - 1)
-        onChange(currentPage - 1)
+    const newPage = currentPage - 1;
+    if(newPage !== 1){
+        onPageChange(newPage)
     }
 }
 
 const nextPage = () => {
-    if(currentPage <= pageNumbers.length){
-        console.log(currentPage);
-        setCurrentPage(currentPage + 1)
-        console.log(currentPage);
-        onChange(currentPage + 1)
+    const newPage = currentPage + 1
+    if(currentPage >= totalPages && currentPage < 13){
+        onPageChange(newPage)
     }
 }
 
@@ -42,10 +35,3 @@ const nextPage = () => {
 }
 
 export default Pagnation
-
-/*
-   <Pagination
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  onPageChange={handlePageChange}
-                /> */
