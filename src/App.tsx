@@ -4,37 +4,37 @@ import "./App.scss";
 import CardList from "./Components/CardList/CardList";
 import { Beer } from "./types/types";
 // import beers from "./Data/beers";
-import Pagnation from "./Components/Pagnation/Pagnation";
+import Pagination from "./Components/Pagination/Pagination";
+import Home from "./Components/Home/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App = () => {
   const [beerData, setBeerData] = useState<Beer[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const beersPerPage = 25; 
-   
+  const beersPerPage = 25;
 
   //Filters
   const [searchTerm, setSearchTeam] = useState<string>("");
   const [isCheckedABV, setIsCheckedABV] = useState<boolean>(false);
-  const [isCheckedFirstBrewed, setIsCheckedFirstBrewed] = useState<boolean>(false);
+  const [isCheckedFirstBrewed, setIsCheckedFirstBrewed] =
+    useState<boolean>(false);
   const [isCheckedPH, setIsCheckedPH] = useState<boolean>(false);
 
   const getData = async (results: number, page: number) => {
     const url = `http://localhost:3333/v2/beers?page=${page}&per_page=${results}`;
     const response = await fetch(url);
     const data: Beer[] = await response.json();
-    setBeerData(data);    
+    setBeerData(data);
   };
 
   useEffect(() => {
     getData(beersPerPage, currentPage);
   }, [beersPerPage, currentPage]);
 
-  
   const handlePageChange = (page: number) => {
-    setCurrentPage(page)
-  }
+    setCurrentPage(page);
+  };
 
- 
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const input = event.currentTarget.value.toLowerCase();
     setSearchTeam(input);
@@ -97,25 +97,39 @@ const App = () => {
   // }
 
   return (
-    <div className="display">
-      <div>
-       <Nav
-        searchTerm={searchTerm}
-        label="search"
-        handleInput={handleInput}
-        onChange={handleFilter}
-        isCheckedABV={isCheckedABV}
-        isCheckedFirstBrewed={isCheckedFirstBrewed}
-        isCheckedPH={isCheckedPH}
-      />
+    <BrowserRouter>
+      <div className="display">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/cards"
+            element={
+              <>
+                <Nav
+                  searchTerm={searchTerm}
+                  label="search"
+                  handleInput={handleInput}
+                  onChange={handleFilter}
+                  isCheckedABV={isCheckedABV}
+                  isCheckedFirstBrewed={isCheckedFirstBrewed}
+                  isCheckedPH={isCheckedPH}
+                />
+                <CardList beers={filteredBeers} />
+                <footer>
+                  <Pagination
+                    currentPage={currentPage}
+                    cardsPerPage={beersPerPage}
+                    length={beerData.length}
+                    onPageChange={handlePageChange}
+                  />
+                </footer>
+              </>
+            }
+          />
+        </Routes>
       </div>
-    <div>
-      <CardList beers={filteredBeers} />
-      <Pagnation currentPage={currentPage} cardsPerPage={beersPerPage} length={beerData.length} onPageChange={handlePageChange}/>
-    </div>
-    </div>
+    </BrowserRouter>
   );
 };
 
 export default App;
-
