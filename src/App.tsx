@@ -1,19 +1,17 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, FormEvent, useEffect, useState } from "react";
 import Nav from "./Components/Nav/Nav";
 import "./App.scss";
 import CardList from "./Components/CardList/CardList";
 import { Beer } from "./types/types";
 // import beers from "./Data/beers";
-// import ResultsCounter from "./Components/ResultsCounter/ResultsCounter";
+import ResultsCounter from "./Components/ResultsCounter/ResultsCounter";
+import Pagnation from "./Components/Pagnation/Pagnation";
 
 const App = () => {
   const [beerData, setBeerData] = useState<Beer[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(3);
-  const [beersPerPage, setBeersPerPage] = useState<number>(25);
-  console.log(beerData); 
-  // console.log(`page number: ${currentPage}`);
-  
-  
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [beersPerPage, setBeersPerPage] = useState<number>(25); 
+   
 
   //Filters
   const [searchTerm, setSearchTeam] = useState<string>("");
@@ -25,27 +23,27 @@ const App = () => {
     const url = `http://localhost:3333/v2/beers?page=${page}&per_page=${results}`;
     const response = await fetch(url);
     const data: Beer[] = await response.json();
-    // console.log(`this is the data from getData function${data}`);
-    setBeerData(data);
-    console.log(beerData);
-    
+    setBeerData(data);    
   };
 
   useEffect(() => {
     getData(beersPerPage, currentPage);
   }, [beersPerPage, currentPage]);
 
- 
-  const indexOfLastBeer = currentPage * beersPerPage //if this was page 2, index oflast beer should be 50
-  const indexOfFirstBeer = indexOfLastBeer - beersPerPage  //50 - 25 = 25 (rember its index of so itll actually be beer 26)
-  const currentBeers =  beerData.slice(indexOfFirstBeer, indexOfLastBeer)//hides the data we don't need to see
-  console.log(`These are the beers on the page ${currentBeers}`);
-  // console.log(indexOfFirstBeer);
-  // console.log(indexOfLastBeer);
+  const totalPages = Math.ceil(beerData.length / beersPerPage)
+  console.log(totalPages);
+
   
   
-  
- 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+    getData(beersPerPage, page)
+  }
+
+  const handleResults = (event: ChangeEvent<HTMLInputElement>) => {
+    const resultNum = event.currentTarget.value;
+    setBeersPerPage(Number(resultNum));
+  };
 
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const input = event.currentTarget.value.toLowerCase();
@@ -65,7 +63,7 @@ const App = () => {
     }
   };
 
-  const filteredBeers = currentBeers
+  const filteredBeers = beerData
     .filter((beer) => {
       const date = beer.first_brewed.split("/");
       const year = Number(date[1]);
@@ -110,14 +108,15 @@ const App = () => {
 
   return (
     <div className="display">
-      {/* <ResultsCounter
+      <div>
+      <ResultsCounter
         min={10}
         max={50}
         label={`No. of Beers ${beersPerPage}`}
         id="beers-results"
         onChange={handleResults}
         value={beersPerPage}
-      /> */}
+      />
 
       <Nav
         searchTerm={searchTerm}
@@ -128,45 +127,14 @@ const App = () => {
         isCheckedFirstBrewed={isCheckedFirstBrewed}
         isCheckedPH={isCheckedPH}
       />
+      </div>
+    <div>
       <CardList beers={filteredBeers} />
+      <Pagnation cardsPerPage={beersPerPage} length={beerData.length} onChange={handlePageChange}/>
+    </div>
     </div>
   );
 };
 
 export default App;
 
-
-/*
-
- const getData = async (results: number, page: number) => {
-    const url = `http://localhost:3333/v2/beers?page=${page}&per_page=${results}`;
-    const response = await fetch(url);
-    const data: Beer[] = await response.json();
-    console.log(`this is the data from getData function${data}`);
-    setBeerData(data);
-    console.log(beerData);
-    
-  };
-
-  useEffect(() => {
-    getData(beersPerPage, currentPage);
-  }, [beersPerPage, currentPage]);
-
- const getData = async (results: number, page: number) => {
-    const url = `http://localhost:3333/v2/beers?page=${page}&per_page=${results}`;
-    const response = await fetch(url);
-    const data: Beer[] = await response.json();
-    console.log(data);
-    setBeerData(data);
-  };
-
-  useEffect(() => {
-    getData(beersPerPage, currentPage);
-  }, [beersPerPage, currentPage]);
-
- const handleResults = (event: ChangeEvent<HTMLInputElement>) => {
-    const resultNum = event.currentTarget.value;
-    setBeersPerPage(Number(resultNum));
-  };
-
-  */
