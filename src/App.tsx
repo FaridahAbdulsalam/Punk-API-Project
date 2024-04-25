@@ -87,9 +87,10 @@ const App = () => {
     })
     .filter((beer) => beer.name.toLowerCase().includes(searchTerm));
 
-    if(filteredBeers.length === 0){
-      return alert("Sorry no beers match your search")
-    }
+    // if(filteredBeers.length === 0){
+    //   return false
+    //   //alert("Sorry no beers match your search")
+    // }
     
     return (
     <div className="display">
