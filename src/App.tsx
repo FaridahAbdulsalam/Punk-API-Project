@@ -3,30 +3,29 @@ import Nav from "./Components/Nav/Nav";
 import "./App.scss";
 import CardList from "./Components/CardList/CardList";
 import { Beer } from "./types/types";
-import beers from "./Data/beers";
+// import beers from "./Data/beers";
 // import ResultsCounter from "./Components/ResultsCounter/ResultsCounter";
 
 const App = () => {
   const [beerData, setBeerData] = useState<Beer[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(30);
-  const [beersPerPage, setBeersPerPage] = useState<number>(10);
-  console.log(`this is the array of beers: ${beerData}`);
-  console.log(`page number: ${currentPage}`);
+  const [currentPage, setCurrentPage] = useState<number>(3);
+  const [beersPerPage, setBeersPerPage] = useState<number>(25);
+  console.log(beerData); 
+  // console.log(`page number: ${currentPage}`);
   
   
 
   //Filters
   const [searchTerm, setSearchTeam] = useState<string>("");
   const [isCheckedABV, setIsCheckedABV] = useState<boolean>(false);
-  const [isCheckedFirstBrewed, setIsCheckedFirstBrewed] =
-    useState<boolean>(false);
+  const [isCheckedFirstBrewed, setIsCheckedFirstBrewed] = useState<boolean>(false);
   const [isCheckedPH, setIsCheckedPH] = useState<boolean>(false);
 
   const getData = async (results: number, page: number) => {
     const url = `http://localhost:3333/v2/beers?page=${page}&per_page=${results}`;
     const response = await fetch(url);
     const data: Beer[] = await response.json();
-    console.log(`this is the data from getData function${data}`);
+    // console.log(`this is the data from getData function${data}`);
     setBeerData(data);
     console.log(beerData);
     
@@ -41,8 +40,8 @@ const App = () => {
   const indexOfFirstBeer = indexOfLastBeer - beersPerPage  //50 - 25 = 25 (rember its index of so itll actually be beer 26)
   const currentBeers =  beerData.slice(indexOfFirstBeer, indexOfLastBeer)//hides the data we don't need to see
   console.log(`These are the beers on the page ${currentBeers}`);
-  console.log(indexOfFirstBeer);
-  console.log(indexOfLastBeer);
+  // console.log(indexOfFirstBeer);
+  // console.log(indexOfLastBeer);
   
   
   
@@ -152,7 +151,7 @@ export default App;
   useEffect(() => {
     getData(beersPerPage, currentPage);
   }, [beersPerPage, currentPage]);
-  
+
  const getData = async (results: number, page: number) => {
     const url = `http://localhost:3333/v2/beers?page=${page}&per_page=${results}`;
     const response = await fetch(url);

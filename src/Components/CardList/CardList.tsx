@@ -1,15 +1,12 @@
 import Card from "../Card/Card";
 import { Beer } from "../../types/types";
-import "./CardList.scss"
-
+import "./CardList.scss";
 
 type CardProps = {
   beers: Beer[];
 };
 
 const CardList = ({ beers }: CardProps) => {
-
-
   return (
     <div className="card-list__container">
       {beers.map((beer) => (
