@@ -1,28 +1,28 @@
-import React, { ChangeEventHandler } from "react";
+import { ChangeEventHandler } from 'react'
 
 type ResultsCounterProps = {
-  label: string;
-  id: string;
-  option: string;
-  onChange: ChangeEventHandler<HTMLSelectElement>;
-  value: number;
-};
+    min: number,
+    max: number;
+    label: string;
+    id: string;
+    onChange: ChangeEventHandler<HTMLInputElement>;
+    value: number;
+}
 
-const ResultsCounter = ({
-  label,
-  id,
-  option,
-  onChange,
-  value,
-}: ResultsCounterProps) => {
+const ResultsCounter = ({min, max, label, id,   onChange,  value}: ResultsCounterProps) => {
   return (
     <div>
       <label htmlFor={id}>{label}</label>
-      <select name="results" onChange={onChange}>
-        <option value={value}>{option}</option>
-      </select>
+      <input
+      id={id}
+      type="range"
+      min={min}
+      max={max}
+      value={value}
+      onChange={onChange}
+      />      
     </div>
-  );
-};
+  )
+}
 
-export default ResultsCounter;
+export default ResultsCounter

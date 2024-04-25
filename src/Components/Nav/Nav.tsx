@@ -3,6 +3,7 @@ import "./Nav.scss";
 import SearchBox from "../SearchBox/SearchBox";
 import FilterItem from "../FilterItem/FilterItem";
 
+
 type SearchBoxProps = {
   label: string;
   searchTerm: string;
@@ -20,7 +21,7 @@ const Nav = ({
   onChange,
   isCheckedABV,
   isCheckedFirstBrewed,
-  isCheckedPH
+  isCheckedPH, 
 }: SearchBoxProps) => {
   return (
     <nav className="nav">

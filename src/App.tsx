@@ -1,12 +1,16 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Nav from "./Components/Nav/Nav";
 import "./App.scss";
-import beers from "./Data/beers";
 import CardList from "./Components/CardList/CardList";
 import { Beer } from "./types/types";
+import ResultsCounter from "./Components/ResultsCounter/ResultsCounter";
 
 const App = () => {
   const [beerData, setBeerData] = useState<Beer[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [beersPerPage, setBeersPerPage] = useState<number>(25)
+
+  //Filters
   const [searchTerm, setSearchTeam] = useState<string>(""); 
   const [isCheckedABV, setIsCheckedABV] = useState<boolean>(false);
   const [isCheckedFirstBrewed, setIsCheckedFirstBrewed] =
@@ -14,8 +18,8 @@ const App = () => {
   const [isCheckedPH, setIsCheckedPH] = useState<boolean>(false);
 
 
-  const getData = async () => {
-    const url = "http://localhost:3333/v2/beers?page=1&per_page=80";
+  const getData = async (results: number) => {
+    const url = `http://localhost:3333/v2/beers?page=1&per_page=${results}`;
     const response = await fetch(url);
     const data: Beer[] = await response.json();
     console.log(data);
@@ -23,10 +27,14 @@ const App = () => {
   }
 
   useEffect( () => {
-    getData()
-  }, [])
+    getData(beersPerPage)
+  }, [beersPerPage])
 
 
+  const handleResults = (event: ChangeEvent<HTMLInputElement>) => {
+    const resultNum = event.currentTarget.value
+    setBeersPerPage(Number(resultNum))
+  }
 
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const input = event.currentTarget.value.toLowerCase();
@@ -94,14 +102,15 @@ const App = () => {
     
     return (
     <div className="display">
+      <ResultsCounter min={10} max={50} label={`No. of Beers ${beersPerPage}`} id="beers-results" onChange={handleResults} value={beersPerPage}/>
       <Nav
-        searchTerm={searchTerm}
-        label="search"
-        handleInput={handleInput}
-        onChange={handleFilter}
-        isCheckedABV={isCheckedABV}
-        isCheckedFirstBrewed={isCheckedFirstBrewed}
-        isCheckedPH={isCheckedPH}
+          searchTerm={searchTerm}
+          label="search"
+          handleInput={handleInput}
+          onChange={handleFilter}
+          isCheckedABV={isCheckedABV}
+          isCheckedFirstBrewed={isCheckedFirstBrewed}
+          isCheckedPH={isCheckedPH}        
       />
       <CardList beers={filteredBeers} />
     </div>
