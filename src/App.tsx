@@ -9,6 +9,7 @@ import Home from "./Components/Home/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BeerInfo from "./Containers/BeerInfo/BeerInfo";
 import NavigationBar from "./Components/NavigationBar/NavigationBar";
+import NoPageFound from "./Components/NoPageFound/NoPageFound";
 
 const App = () => {
   const [beerData, setBeerData] = useState<Beer[]>([]);
@@ -55,6 +56,8 @@ const App = () => {
     }
   };
 
+  
+
   const filteredBeers = beerData
     .filter((beer) => {
       const date = beer.first_brewed.split("/");
@@ -93,10 +96,8 @@ const App = () => {
     })
     .filter((beer) => beer.name.toLowerCase().includes(searchTerm));
 
-  // if(filteredBeers.length === 0){
-  //   return false
-  //   //alert("Sorry no beers match your search")
-  // }
+ 
+  const noMatch = filteredBeers.length === 0
 
   return (
     <BrowserRouter>
@@ -117,7 +118,9 @@ const App = () => {
                   isCheckedFirstBrewed={isCheckedFirstBrewed}
                   isCheckedPH={isCheckedPH}
                 />
-                <CardList beers={filteredBeers} />
+                {noMatch ? (
+                  <h1>Oh no! there were no results that match your search</h1>) : (
+                 <CardList beers={filteredBeers} /> )}
                 <footer>
                   <Pagination
                     currentPage={currentPage}
@@ -133,6 +136,7 @@ const App = () => {
             path="/cards/:beerName"
             element={<BeerInfo beers={beerData} />}
           />
+          <Route path="*" element={<NoPageFound/>}/>
         </Routes>
       </div>
     </BrowserRouter>

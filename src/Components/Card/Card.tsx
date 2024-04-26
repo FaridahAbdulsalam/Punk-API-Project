@@ -1,4 +1,3 @@
-import Button from "../Button/Button";
 import "./Card.scss";
 import { useState } from "react";
 import Cross from "../../assets/images/x-square (1).png";
