@@ -1,0 +1,27 @@
+@use "../../assets/styles/variables" as *;
+
+.nav-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: $primary-colour;
+    border: solid 5px $white;
+    height: auto;
+
+    .nav-bar__heading{
+        font-family: $title-font;
+        color: $white;
+        font-size: $h1;
+    }
+
+    .nav-bar__home{
+        height: 30px;
+        // margin-left: 20px;
+    }
+
+    .nav-bar__cards{
+        height: 30px;
+        // margin-right: 20px;
+    }
+}
