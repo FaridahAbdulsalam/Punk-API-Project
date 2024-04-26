@@ -1,9 +1,11 @@
+@use "./assets/styles/variables" as *;
+
 .display{
     height: 100vh;
     overflow-x:hidden;
     // border: solid 1px orange;
     display: flex;
     flex-direction: column;
-    background-color: rgba(255, 115, 0, 0.363);
+    background-color: $background-colour;
     gap: 10px;
 }
