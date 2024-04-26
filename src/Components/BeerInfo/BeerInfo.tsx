@@ -1,5 +1,6 @@
 import { Beer } from "../../types/types";
 import { useParams } from "react-router-dom";
+import "./BeerInfo.scss"
 
 type BeerInfoProps = {
   beers: Beer[];
