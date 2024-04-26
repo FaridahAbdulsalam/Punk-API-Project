@@ -1,3 +1,4 @@
+import Button from "../Button/Button";
 import "./Card.scss"
 
 
@@ -15,6 +16,7 @@ const Card = ({image, name, tagline} : CardProps) => {
         <h1 className='card_name'>{name}</h1>
         <p className='card__tag'>{tagline}</p>
       </div>
+      <Button title="Find Out More"/>
     </div>
   )
 }
