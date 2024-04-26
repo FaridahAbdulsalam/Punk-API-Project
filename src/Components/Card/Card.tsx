@@ -13,6 +13,7 @@ type CardProps = {
 const Card = ({image, name, tagline, ingredients} : CardProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
 
+
   const hancleClick = () => {
     setShowInfo(!showInfo)
   }
@@ -25,12 +26,12 @@ const Card = ({image, name, tagline, ingredients} : CardProps) => {
 
   const infoAtBack = (
     <>
-    <button onClick={hancleClick}>close</button>
     {ingredients}
+    <button onClick={hancleClick}>close</button>
     </>
   )
 
-  let infoClassName = "card__info"
+  let infoClassName = "card__info "
   if (showInfo) infoClassName += "card__info--info"
 
   return (
@@ -39,7 +40,9 @@ const Card = ({image, name, tagline, ingredients} : CardProps) => {
       <div className='card__content'>
         <h1 className='card_name'>{name}</h1>
         <p className='card__tag'>{tagline}</p>
+        <div className={infoClassName}>
         {showInfo ? infoAtBack : cardInFront}
+        </div>
       </div>
     </div>
   )

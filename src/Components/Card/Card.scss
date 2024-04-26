@@ -1,74 +1,89 @@
-.card{
-    border: solid 4px black;
-    border-radius: 10px;
+@use "../../assets/styles/variables" as *;
+
+.card {
+  border: solid 4px $white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  max-width: 150px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 1rem;
+  background-color: $fourth-colour;
+  height: 50vh;
+  position: relative;
+
+  .card__image {
+    display: block;
+    max-width: 65px;
+    width: 100%;
+    height: auto;
+  }
+
+  .card__content {
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    gap: 2px;
+    width: 70%;
     align-items: center;
-    width: 100%;
-    max-width: 150px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    padding: 1rem;
-    background-color: rgb(255, 196, 0);
-    height: 50vh;
+    justify-content: center;
+    z-index: 2;
+    position: absolute;
 
-
-    
-
-    .card__image{
-        display: block;
-        max-width: 65px;
-        width: 100%;
-        height: auto;
-        // border: solid 3px green;
+    .card__name {
+      text-align: center;
     }
 
-    .card__content{
-        // border: 1px solid orange;
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        width: 70%;
-        align-items: center;
-        justify-content: center;
-
-        .card__name{
-            text-align: center;
-        }
+    .card__tag {
+      font-family: $secondary-font;
+      color: $white;
+      font-size: $paragraph;
     }
 
 
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $secondary-colour-translucent;
+  }
+  
+
 }
 
-   /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Scrollbar-styling start<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-   .card::-webkit-scrollbar{
-    width: 10px;
-    border-radius: 10px;
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Scrollbar-styling start<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+.card::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 10px;
 }
 
-.card::-webkit-scrollbar-track{
-background-color: rgba(163, 126, 4, 0.11);
+.card::-webkit-scrollbar-track {
+  background-color: $secondary-colour-translucent;
 }
 
-.card::-webkit-scrollbar-thumb{
-background-color: rgba(196, 151, 3, 0.575);
-border-radius: 20px;
-border: 3px solid rgba(163, 126, 4, 0.24);
-    
+.card::-webkit-scrollbar-thumb {
+  background-color: $background-colour;
+  border-radius: 20px;
+  border: 3px solid $secondary-colour-translucent;
 }
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Scrollbar-styling end<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-
-
-//media query for images only 
-@media screen and (max-width: 450px){
-    .card{
-        height: 20vh;    
-        .card__image{
-            display: none;
-        }
+//media query for images only
+@media screen and (max-width: 450px) {
+  .card {
+    height: 20vh;
+    .card__image {
+      display: none;
     }
+  }
 }

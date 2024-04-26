@@ -1,8 +1,16 @@
-.card-list__container{
-    // border: 2px solid red;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-    gap: 20px;
-    justify-items: center;
-    width: 80vw;
+@use "../../assets/styles/variables" as *;
+
+.card-list__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 20px;
+  justify-items: center;
+  width: 80vw;
+
+  .card-list__link {
+    font-family: $title-font;
+    font-size: $h1;
+    color: $background-colour;
+    text-decoration: none;
+  }
 }
