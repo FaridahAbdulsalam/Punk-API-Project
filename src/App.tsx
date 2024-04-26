@@ -37,7 +37,7 @@ const App = () => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
-
+  
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const input = event.currentTarget.value.toLowerCase();
     setSearchTeam(input);
