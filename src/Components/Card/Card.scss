@@ -1,7 +1,7 @@
 @use "../../assets/styles/variables" as *;
 
 .card {
-  border: solid 4px $white;
+  border: solid 4px $black;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -45,7 +45,7 @@
       font-size: $paragraph;
     }
 
-    .card__info-open{
+    .card__info-open {
       background-color: $background-colour;
       border-radius: 30px;
       font-family: $tertiary-font;
@@ -54,20 +54,20 @@
       margin: 0, auto;
     }
 
-    .card__info{
+    .card__info {
       border: 2px solid $white;
       display: block;
       background-color: $background-colour;
       border-radius: 10px;
 
-      p{
+      p {
         font-family: $tertiary-font;
         font-size: $small;
         list-style-type: number;
       }
     }
 
-    .card__info-close{
+    .card__info-close {
       border: none;
       font-family: $tertiary-font;
       font-size: $small;
@@ -75,8 +75,6 @@
       margin: 0, auto;
     }
   }
-  
-
 }
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Scrollbar-styling start<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/

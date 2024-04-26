@@ -21,7 +21,9 @@ const CardList = ({ beers }: CardProps) => {
           }
           tagline={beer.tagline}
           ingredients={beer.ingredients.malt.map((malt, index) => (
-            <li key={index} className="card-list__bullets">{malt.name}</li>
+            <li key={index} className="card-list__bullets">
+              {malt.name}
+            </li>
           ))}
         />
       ))}

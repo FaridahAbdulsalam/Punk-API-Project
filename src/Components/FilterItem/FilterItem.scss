@@ -1,3 +1,6 @@
+@use "../../assets/styles/variables" as *;
+
+
 .filter {
   // border: 2px solid green;
   display: flex;
@@ -7,8 +10,9 @@
   gap: 15px;
 
   .filter__label {
-    font-size: 20px;
-    color: rgb(97, 56, 3);
+    font-size: $paragraph;
+    font-family: $secondary-font;
+    color: $primary-colour;
     display: block;
 
     input[type="checkbox"] {
@@ -16,7 +20,7 @@
       width: 20px;
       height: 20px;
       margin: 5px;
-      outline: solid 2px rgb(97, 56, 3);
+      outline: solid 2px $tertiary-colour;
     }
   }
 }

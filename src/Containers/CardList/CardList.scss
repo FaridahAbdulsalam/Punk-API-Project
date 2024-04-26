@@ -5,7 +5,8 @@
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   gap: 20px;
   justify-items: center;
-  width: 80vw;
+  align-items: center;
+  width: 95vw;
 
   .card-list__link {
     font-family: $title-font;

@@ -1,0 +1,12 @@
+@use "../../assets/styles/variables" as *;
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .pagination__counter{
+        font-family: $secondary-font;
+        font-size: $paragraph;
+    }
+}

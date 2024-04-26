@@ -1,4 +1,6 @@
 import "./Pagination.scss";
+import LeftArrow from "../../assets/images/chevron-left.png";
+import RightArrow from "../../assets/images/chevron-right.png";
 
 type PaginationProps = {
   cardsPerPage: number;
@@ -30,13 +32,18 @@ const Pagination = ({
   };
   return (
     <div className="pagination">
-      <button onClick={prevPage} className="pagination__previous-button">
-        Previous
-      </button>
+      <img
+        src={LeftArrow}
+        onClick={prevPage}
+        className="pagination__previous-button"
+      />
+
       <p className="pagination__counter">{`${currentPage}/13`}</p>
-      <button onClick={nextPage} className="pagination__next-button">
-        Next
-      </button>
+      <img
+        src={RightArrow}
+        onClick={nextPage}
+        className="pagination__next-button"
+      />
     </div>
   );
 };
