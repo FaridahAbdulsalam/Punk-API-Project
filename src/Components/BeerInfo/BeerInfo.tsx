@@ -1,13 +1,14 @@
-import React from 'react'
 import { Beer } from '../../types/types'
+import { useParams } from 'react-router-dom';
 
 type BeerInfoProps = {
     beers: Beer[];
 }
 
 const BeerInfo = ({beers}:BeerInfoProps) => {
+  const {beerName} = useParams()
 
-    const matchedBeer = beers.find((beer)=> beer.name)
+    const matchedBeer = beers.find((beer)=> beer.name === beerName)
 
     if(!matchedBeer){
         return <p>Could not find a beer with that name</p>
