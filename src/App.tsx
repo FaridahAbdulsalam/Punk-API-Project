@@ -8,6 +8,7 @@ import Pagination from "./Components/Pagination/Pagination";
 import Home from "./Components/Home/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BeerInfo from "./Components/BeerInfo/BeerInfo";
+import NavigationBar from "./Components/NavigationBar/NavigationBar";
 
 const App = () => {
   const [beerData, setBeerData] = useState<Beer[]>([]);
@@ -100,6 +101,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="display">
+        <NavigationBar/>
         <Routes>
           <Route path="/" element={<Home beers={beerData} />} />
           <Route
