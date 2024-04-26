@@ -10,7 +10,7 @@ const Home = ({ beers }: HomeProps) => {
   return (
     <div>
       <header className="header">
-        <h1 className="header__title">BEER-Necesities!</h1>
+        <h1 className="header__title">BEER-necessities!</h1>
       </header>
       <main className="main">
         <h2 className="main__tagline">
