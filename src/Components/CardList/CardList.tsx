@@ -11,7 +11,7 @@ const CardList = ({ beers }: CardProps) => {
   return (
     <div className="card-list__container">
       {beers.map((beer) => (
-        <Link to={`/cards/${beer.name}`}>
+        <Link className="card-list__link" to={`/cards/${beer.name}`}>
         <Card
           key={beer.id}
           image={beer.image_url}
