@@ -1,4 +1,4 @@
-import Card from "../Card/Card";
+import Card from "../../Components/Card/Card";
 import { Beer } from "../../types/types";
 import "./CardList.scss";
 import { Link } from "react-router-dom";
@@ -15,14 +15,13 @@ const CardList = ({ beers }: CardProps) => {
           key={beer.id}
           image={beer.image_url}
           name={
-          <Link className="card-list__link" to={`/cards/${beer.name}`}>
-            {beer.name}
-          </Link>}
+            <Link className="card-list__link" to={`/cards/${beer.name}`}>
+              {beer.name}
+            </Link>
+          }
           tagline={beer.tagline}
           ingredients={beer.ingredients.malt.map((malt, index) => (
-            <li key={index}>
-              {malt.name}
-            </li>
+            <li key={index}>{malt.name}</li>
           ))}
         />
       ))}

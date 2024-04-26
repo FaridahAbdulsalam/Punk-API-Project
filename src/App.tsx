@@ -1,13 +1,13 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Nav from "./Components/Nav/Nav";
 import "./App.scss";
-import CardList from "./Components/CardList/CardList";
+import CardList from "./Containers/CardList/CardList";
 import { Beer } from "./types/types";
 // import beers from "./Data/beers";
-import Pagination from "./Components/Pagination/Pagination";
+import Pagination from "./Containers/Pagination/Pagination";
 import Home from "./Components/Home/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import BeerInfo from "./Components/BeerInfo/BeerInfo";
+import BeerInfo from "./Containers/BeerInfo/BeerInfo";
 import NavigationBar from "./Components/NavigationBar/NavigationBar";
 
 const App = () => {
@@ -101,7 +101,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="display">
-        <NavigationBar/>
+        <NavigationBar />
         <Routes>
           <Route path="/" element={<Home beers={beerData} />} />
           <Route
@@ -129,7 +129,10 @@ const App = () => {
               </>
             }
           />
-          <Route path="/cards/:beerName" element={<BeerInfo beers={beerData}/>}/>
+          <Route
+            path="/cards/:beerName"
+            element={<BeerInfo beers={beerData} />}
+          />
         </Routes>
       </div>
     </BrowserRouter>
