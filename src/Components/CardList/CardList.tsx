@@ -11,14 +11,20 @@ const CardList = ({ beers }: CardProps) => {
   return (
     <div className="card-list__container">
       {beers.map((beer) => (
-        <Link className="card-list__link" to={`/cards/${beer.name}`}>
         <Card
           key={beer.id}
           image={beer.image_url}
-          name={beer.name}
+          name={
+          <Link className="card-list__link" to={`/cards/${beer.name}`}>
+            {beer.name}
+          </Link>}
           tagline={beer.tagline}
+          ingredients={beer.ingredients.malt.map((malt, index) => (
+            <li key={index}>
+              {malt.name}
+            </li>
+          ))}
         />
-        </Link>
       ))}
     </div>
   );
