@@ -7,12 +7,12 @@ Webpage preview below:
 ![image](https://github.com/FaridahAbdulsalam/punk-api-project/assets/143902490/d728edbd-f12b-46e8-a98b-df47ef232c6c)
 
 Features:
-**300+ Beers**
-**Real-time searches:** Easily find your preferred beer by name or just letter as the cards update as you type, and if we haven't got it, we'll let you know! 
-**On page Filters:** Look through a specific catergory or multiple with the easy to use filters
-**Pagination:** Because who wants to scroll through hundreds of results, easily flick through pages and consume data at a more appropriate pace
-**Easy navigation:** With routing and links built into the code, users should find it easy to process and find information no matter where you are on the page
-**Error Free:** App runs smoothly and should cause you no trouble whilst browsing.
+- **300+ Beers**
+- **Real-time searches:** Easily find your preferred beer by name or just letter as the cards update as you type, and if we haven't got it, we'll let you know! 
+- **On page Filters:** Look through a specific catergory or multiple with the easy to use filters
+- **Pagination:** Because who wants to scroll through hundreds of results, easily flick through pages and consume data at a more appropriate pace
+- **Easy navigation:** With routing and links built into the code, users should find it easy to process and find information no matter where you are on the page
+- **Error Free:** App runs smoothly and should cause you no trouble whilst browsing.
 
 About BEER-necessities:
 This webpage houses a dynamic list of beers allowing users to flick through to find differnt sorts of information related to each.
